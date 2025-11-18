@@ -15,16 +15,27 @@ Sistema completo de transposição musical que funciona **100% offline**. Agora 
 ### A forma de funcionamento 
 
 Escolha um dos instrumentos abaixo:
-Violao
-Guitarra 
-Baixo
-Ukulele
-violino 
-Flauta
-Clarineta
-Saxofone Alto
-Saxofone Tenor 
-Trompete
-trombone 
+
+*Violao*
+
+*Guitarra*
+
+*Baixo*
+
+*Ukulele*
+
+*violino*
+
+*Flauta*
+
+*Clarineta* 
+
+*Saxofone Alto*
+
+*Saxofone Tenor*
+
+*Trompete*
+
+*trombone* 
 
 Logo apos escreve a cifras ou a nota que deseja modificar e aperte para fazer a transposição da nota 
