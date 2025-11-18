@@ -13,7 +13,6 @@ class TranspositorFrontend {
             sax_tenor: { nome: "Saxofone Tenor", afinacao: "Ab", tonalidade: "Bb" },
             trompete: { nome: "Trompete", afinacao: "C", tonalidade: "Bb" },
             trombone: { nome: "Trombone", afinacao: "E", tonalidade: "C" }
-            tuba: { nome : "tuba", afinacao: "Bb-F-Eb-C", tonalidade "Bb"}
         };
 
         this.transposicoes = {
