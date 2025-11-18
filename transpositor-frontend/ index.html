@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎵 Transpositor Musical</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading" class="loading">
+        <div class="loader">
+            <div class="music-note">♪</div>
+            <div class="music-note">♫</div>
+            <div class="music-note">🎵</div>
+        </div>
+        <p>Carregando Transpositor Musical...</p>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-music"></i>
+                <h1>Transpositor Musical</h1>
+            </div>
+            <nav class="nav">
+                <button class="nav-btn" onclick="toggleTheme()">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="nav-btn" onclick="showHelp()">
+                    <i class="fas fa-question-circle"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Instrument Selection -->
+            <section class="instrument-section">
+                <div class="instrument-card">
+                    <div class="instrument-header">
+                        <i class="fas fa-guitar"></i>
+                        <h3>Instrumento de Origem</h3>
+                    </div>
+                    <select id="instrument-origin" class="instrument-select">
+                        <option value="violao">🎸 Violão</option>
+                        <option value="guitarra">🎸 Guitarra</option>
+                        <option value="baixo">🎸 Baixo</option>
+                        <option value="ukulele">🎵 Ukulele</option>
+                        <option value="violino">🎻 Violino</option>
+                        <option value="flauta">🎵 Flauta</option>
+                        <option value="clarineta">🎷 Clarineta</option>
+                        <option value="sax_alto">🎷 Saxofone Alto</option>
+                        <option value="sax_tenor">🎷 Saxofone Tenor</option>
+                        <option value="trompete">🎺 Trompete</option>
+                        <option value="trombone">🎺 Trombone</option>
+                    </select>
+                    <div class="instrument-info" id="origin-info">
+                        <span class="tuning">Afinação: E-A-D-G-B-E</span>
+                    </div>
+                </div>
+
+                <div class="arrow-container">
+                    <div class="arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <div class="instrument-card">
+                    <div class="instrument-header">
+                        <i class="fas fa-volume-up"></i>
+                        <h3>Instrumento de Destino</h3>
+                    </div>
+                    <select id="instrument-destination" class="instrument-select">
+                        <option value="ukulele">🎵 Ukulele</option>
+                        <option value="violao">🎸 Violão</option>
+                        <option value="guitarra">🎸 Guitarra</option>
+                        <option value="baixo">🎸 Baixo</option>
+                        <option value="violino">🎻 Violino</option>
+                        <option value="flauta">🎵 Flauta</option>
+                        <option value="clarineta">🎷 Clarineta</option>
+                        <option value="sax_alto">🎷 Saxofone Alto</option>
+                        <option value="sax_tenor">🎷 Saxofone Tenor</option>
+                        <option value="trompete">🎺 Trompete</option>
+                        <option value="trombone">🎺 Trombone</option>
+                    </select>
+                    <div class="instrument-info" id="destination-info">
+                        <span class="tuning">Afinação: G-C-E-A</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chord Input -->
+            <section class="chord-section">
+                <div class="section-header">
+                    <i class="fas fa-music"></i>
+                    <h2>Cifra Musical</h2>
+                </div>
+                
+                <div class="chord-input-container">
+                    <textarea 
+                        id="chord-input" 
+                        placeholder="Digite sua cifra aqui...&#10;Exemplo: C G Am F Em D7&#10;Ou: Dó Sol Lám Fá Mim"
+                        class="chord-textarea"
+                    ></textarea>
+                    
+                    <div class="chord-tools">
+                        <button class="tool-btn" onclick="clearText()">
+                            <i class="fas fa-eraser"></i> Limpar
+                        </button>
+                        <button class="tool-btn" onclick="pasteText()">
+                            <i class="fas fa-paste"></i> Colar
+                        </button>
+                        <button class="tool-btn" onclick="showExamples()">
+                            <i class="fas fa-lightbulb"></i> Exemplos
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quick Chord Buttons -->
+                <div class="quick-chords">
+                    <h4>Acordes Rápidos:</h4>
+                    <div class="chord-buttons">
+                        <button class="chord-btn" onclick="addChord('C')">C</button>
+                        <button class="chord-btn" onclick="addChord('D')">D</button>
+                        <button class="chord-btn" onclick="addChord('E')">E</button>
+                        <button class="chord-btn" onclick="addChord('F')">F</button>
+                        <button class="chord-btn" onclick="addChord('G')">G</button>
+                        <button class="chord-btn" onclick="addChord('A')">A</button>
+                        <button class="chord-btn" onclick="addChord('B')">B</button>
+                        <button class="chord-btn minor" onclick="addChord('Am')">Am</button>
+                        <button class="chord-btn minor" onclick="addChord('Em')">Em</button>
+                        <button class="chord-btn seventh" onclick="addChord('C7')">C7</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Options -->
+            <section class="options-section">
+                <div class="options-grid">
+                    <label class="option-item">
+                        <input type="checkbox" id="use-flats" onchange="updateOptions()">
+                        <span class="checkmark"></span>
+                        Usar Bemóis em vez de Sustenidos
+                    </label>
+                    
+                    <label class="option-item">
+                        <input type="checkbox" id="show-portuguese" onchange="updateOptions()">
+                        <span class="checkmark"></span>
+                        Mostrar nomes em Português
+                    </label>
+
+                    <label class="option-item">
+                        <input type="checkbox" id="auto-transpose" onchange="updateOptions()">
+                        <span class="checkmark"></span>
+                        Transposição Automática
+                    </label>
+                </div>
+            </section>
+
+            <!-- Action Button -->
+            <section class="action-section">
+                <button id="transpose-btn" class="transpose-btn" onclick="transposeMusic()">
+                    <i class="fas fa-exchange-alt"></i>
+                    TRANSPOR MÚSICA
+                </button>
+            </section>
+
+            <!-- Results -->
+            <section class="results-section" id="results-section" style="display: none;">
+                <div class="section-header">
+                    <i class="fas fa-check-circle"></i>
+                    <h2>Resultado da Transposição</h2>
+                </div>
+
+                <div class="results-container">
+                    <div class="result-card">
+                        <div class="result-header">
+                            <h4>Cifra Transposta</h4>
+                            <button class="copy-btn" onclick="copyResult()">
+                                <i class="fas fa-copy"></i> Copiar
+                            </button>
+                        </div>
+                        <div id="transposed-chords" class="chords-display">
+                            <!-- Resultado aparecerá aqui -->
+                        </div>
+                    </div>
+
+                    <div class="result-card">
+                        <div class="result-header">
+                            <h4>Explicação em Português</h4>
+                        </div>
+                        <div id="portuguese-explanation" class="explanation-display">
+                            <!-- Explicação aparecerá aqui -->
+                        </div>
+                    </div>
+
+                    <div class="result-card">
+                        <div class="result-header">
+                            <h4>Detalhes da Transposição</h4>
+                        </div>
+                        <div id="transposition-details" class="details-display">
+                            <!-- Detalhes aparecerão aqui -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Transpositor Musical. Desenvolvido com ♪ para músicos.</p>
+            <div class="footer-links">
+                <a href="#" onclick="showHelp()">Ajuda</a>
+                <a href="#" onclick="showAbout()">Sobre</a>
+                <a href="#" onclick="showShortcuts()">Atalhos</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div id="help-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('help-modal')">&times;</span>
+            <h2>🎵 Como Usar o Transpositor</h2>
+            <div class="modal-body">
+                <h3>Passo a Passo:</h3>
+                <ol>
+                    <li>Selecione o instrumento de origem (que você toca)</li>
+                    <li>Selecione o instrumento de destino (para o qual quer transpor)</li>
+                    <li>Digite a cifra musical na área de texto</li>
+                    <li>Clique em "TRANSPOR MÚSICA"</li>
+                    <li>Copie o resultado e toque!</li>
+                </ol>
+
+                <h3>Formatos Suportados:</h3>
+                <ul>
+                    <li><strong>Acordes básicos:</strong> C, Dm, Em, F, G, Am, B</li>
+                    <li><strong>Acordes com sétima:</strong> C7, G7, Am7, etc.</li>
+                    <li><strong>Acordes sustenidos/bemóis:</strong> C#, Eb, F#m, etc.</li>
+                    <li><strong>Notas em português:</strong> Dó, Ré, Mim, Fá, etc.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="examples-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('examples-modal')">&times;</span>
+            <h2>🎼 Exemplos de Cifras</h2>
+            <div class="modal-body">
+                <div class="example-group">
+                    <h3>Músicas Populares:</h3>
+                    <div class="example-item" onclick="loadExample('example1')">
+                        <strong>Imagine - John Lennon</strong>
+                        <code>C Cmaj7 C7 F Fm C G Am</code>
+                    </div>
+                    <div class="example-item" onclick="loadExample('example2')">
+                        <strong>Stand By Me - Ben E. King</strong>
+                        <code>C Am F G</code>
+                    </div>
+                    <div class="example-item" onclick="loadExample('example3')">
+                        <strong>Let It Be - The Beatles</strong>
+                        <code>C G Am F C G F C</code>
+                    </div>
+                </div>
+
+                <div class="example-group">
+                    <h3>Progressões Básicas:</h3>
+                    <div class="example-item" onclick="loadExample('example4')">
+                        <strong>Progressão I-V-vi-IV</strong>
+                        <code>C G Am F</code>
+                    </div>
+                    <div class="example-item" onclick="loadExample('example5')">
+                        <strong>Progressão vi-IV-I-V</strong>
+                        <code>Am F C G</code>
+                    </div>
+                    <div class="example-item" onclick="loadExample('example6')">
+                        <strong>Blues em A</strong>
+                        <code>A7 D7 E7</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
